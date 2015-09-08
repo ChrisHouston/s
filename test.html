@@ -1,0 +1,31 @@
+<html>
+	<title>s</title>
+	<style>
+		.box {display:block;float:left;width:100px;height:100px;font-size:40px;text-align: center;color:#ffffff;}
+		.red {background-color:#ff0000;}
+		.blue {border:2px solid #2266ff;}
+		.yellow {color:#ffaa00;}
+		.green:before {content:"...";color:#229900;}
+	</style>
+	<body>
+		<div id="First" class="box"></div>
+		<div class="box sub"></div>
+		<div class="box"></div>
+		<div class="box sub" data-color="#6688aa"></div>
+		<script src="js/s.js"></script>
+		<script>
+			s("div").addClass("yellow");
+			s(".sub").addClass("blue");
+			s(".box").toggleClass("blue");
+			s("#First").addClass("red");
+			s.removeClass(s("div")[1], "green");
+			var boxes = s("div");
+			for(var i=boxes.length-1;i>-1;i--) {
+				boxes[i].innerHTML = i;	
+				s.css(boxes[i], {
+					backgroundColor: s(boxes[i]).data("color") || ""
+				})
+			}
+		</script>
+	</body>
+</html>
