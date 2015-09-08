@@ -12,12 +12,14 @@
 		<div class="box sub"></div>
 		<div class="box"></div>
 		<div class="box sub" data-color="#6688aa"></div>
-		<script src="js/s.js"></script>
+		<script src="s.js"></script>
 		<script>
-			s("div").addClass("yellow");
+			s("div").addClass("green");
 			s(".sub").addClass("blue");
 			s(".box").toggleClass("blue");
 			s("#First").addClass("red");
+			s("#First").data("color", "rgba(255,0,220,0.8)");
+			
 			s.removeClass(s("div")[1], "green");
 			var boxes = s("div");
 			for(var i=boxes.length-1;i>-1;i--) {

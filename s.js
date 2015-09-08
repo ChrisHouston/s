@@ -52,8 +52,11 @@
 	}
 	
 	select.data = function(el, key, newValue) {
+		if (newValue != undefined) {
+			return el.setAttribute("data-"+key, newValue);
+		}
 		try {
-			return el.attributes["data-"+key].value;
+			return el.getAttribute("data-"+key);
 		} catch (e) {
 			return undefined;	
 		}
@@ -111,9 +114,9 @@
 			return me;
 		}
 
-		this.data = function (key) {
+		this.data = function (key, value) {
 			for (var i = me.length - 1; i > -1; i--) {
-				var out = select.data(me[i], key);
+				var out = select.data(me[i], key, value);
 				if (out != undefined) {
 					return out;
 				}
