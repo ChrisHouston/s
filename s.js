@@ -1,31 +1,7 @@
 (function() {
 
-	function select(id) {
-
-		if (id instanceof HTMLElement) {
-			return new Selector([id]);
-		} else {
-			var type = 0;
-			var els = [];
-			if (id.charAt(0) == "#") {
-				type = 1;
-				id = id.substr(1);
-			} else if (id.charAt(0) == ".") {
-				type=2;
-				id = id.substr(1);
-			}
-			if (type == 1) {
-				var el = document.getElementById(id);
-				if (el) {
-					els = [el];	
-				}
-			} else if (type == 2) {
-				els = document.getElementsByClassName(id);
-			} else {
-				els = document.getElementsByTagName(id);
-			}
-			return new Selector(els);
-		}
+	function select(id, parent) {
+		return select.find(id, parent);
 	}
 
 	select.addClass = function(el, cls) {
@@ -61,6 +37,34 @@
 			return undefined;	
 		}
 		return undefined;
+	}
+	
+	select.find = function(id, parent) {
+		parent = parent || document;
+		if (id instanceof HTMLElement) {
+			return new Selector([id]);
+		} else {
+			var type = 0;
+			var els = [];
+			if (id.charAt(0) == "#") {
+				type = 1;
+				id = id.substr(1);
+			} else if (id.charAt(0) == ".") {
+				type=2;
+				id = id.substr(1);
+			}
+			if (type == 1) {
+				var el = parent.getElementById(id);
+				if (el) {
+					els = [el];	
+				}
+			} else if (type == 2) {
+				els = parent.getElementsByClassName(id);
+			} else {
+				els = parent.getElementsByTagName(id);
+			}
+			return new Selector(els);
+		}
 	}
 	
 	function Selector(els) {
@@ -122,6 +126,10 @@
 				}
 			}
 			return undefined;
+		}
+		
+		this.find = function(id) {
+			return select.find(id, me[0]);
 		}
 	}
 
