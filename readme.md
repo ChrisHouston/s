@@ -63,6 +63,7 @@ s(".menuButton").css({color:"#446600", fontWeight:"bold"});
 Gets or sets the value of an HTML data-attribute. Returns the data-attribute value, or the selector if newValue is set..
 
 *`keyName`* - String. The name of the data-attribute, without the "data-" at the front. Note: No string transformation is done on the name of the key. String transformation is *wrong* and should always be avoided.
+
 *`newValue`* - Variant, optional. The new value for the data attribute.
 
 ### `selector.find(identifier)`
