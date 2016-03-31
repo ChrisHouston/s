@@ -48,13 +48,12 @@
 			var els = [];
 			if (id.charAt(0) == "#") {
 				type = 1;
-				id = id.substr(1);
 			} else if (id.charAt(0) == ".") {
 				type=2;
 				id = id.substr(1);
 			}
 			if (type == 1) {
-				var el = parent.getElementById(id);
+				var el = parent.querySelector(id);
 				if (el) {
 					els = [el];	
 				}
