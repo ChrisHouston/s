@@ -12,22 +12,31 @@
 		<div class="box sub"></div>
 		<div class="box"></div>
 		<div class="box sub" data-color="#6688aa"></div>
+		<div class="box" id="outside"></div>
+		<div class="box"><div id="inside"></div></div>
 		<script src="s.js"></script>
 		<script>
+			
 			s("div").addClass("green");
 			s(".sub").addClass("blue");
 			s(".box").toggleClass("blue");
 			s("#First").addClass("red");
 			s("#First").data("color", "rgba(255,0,220,0.8)");
 			
+			var insides = s(".box").find("#inside");
+
 			s.removeClass(s("div")[1], "green");
 			var boxes = s("div");
 			for(var i=boxes.length-1;i>-1;i--) {
-				boxes[i].innerHTML = i;	
+			//	boxes[i].innerHTML = i;	
 				s.css(boxes[i], {
 					backgroundColor: s(boxes[i]).data("color") || ""
 				})
 			}
+			s(".box").find("#inside").css({backgroundColor:"#ffcc00"});
+			s(".box").find(".box").css({backgroundColor:"#cc4488"});
+			
+			console.log(s(".box>div").addClass("red"));
 		</script>
 	</body>
 </html>
