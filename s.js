@@ -49,7 +49,30 @@
 			var char0 = id.charAt(0);
 			var substr1 = id.substr(1);
 			/* if first character is not alphabetical, . or # OR subsequent characters contain .#*,>+~]:) or space, use querySelectorAll */
-			if (/[^\.#a-z]/.test(char0) || /[\.#\*,\s>\+~\]:\)]/.test(substr1)) {
+			
+			var complex = true;
+			var c = id.charCodeAt(0);
+			if (c == 46 || c == 35 || (c > 96 && c < 123)) {
+				//. # a-z
+				complex = false;
+			}
+
+			if (!complex) {
+				var trickyChars = "*,>+~]:)#. ";
+				for (var i=trickyChars.length-1;i>-1;i--) {
+					var tc = trickyChars[i];
+					for (var j=id.length-1;j>0;j--) { //don't check the first character
+						if (id.charAt(j) == trickyChars[i]) {
+							complex = true;	
+						}
+					}
+					if (complex) {
+						break;	
+					}
+				}
+			}
+			
+			if (complex) {
 				els = parent.querySelectorAll(id);
 			} else {
 				switch (char0) {

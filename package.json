@@ -1,0 +1,26 @@
+{
+  "name": "s",
+  "version": "1.0.0",
+  "description": "A super-lightweight html tag selector library. Does what vanilla JS does, but with less typing.",
+  "main": "s.js",
+  "dependencies": {
+    "benchmark": "^2.1.2",
+    "gulp": "^3.9.1",
+    "uglify-js2": "^2.1.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisHouston/s.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisHouston/s/issues"
+  },
+  "homepage": "https://github.com/ChrisHouston/s#readme"
+}

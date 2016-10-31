@@ -1,0 +1,92 @@
+<html>
+	<title>s tests</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			color:white;
+			font-size:0;
+		}
+		.testunit {
+			display: inline-block;width:200px;
+			background-color:red;
+			margin:3px;
+		}
+		.testunit ._title {
+			background-color:black;
+			font-size:12px;
+			text-align: center;
+			padding:3px 0;
+		}
+		.testunit:after {
+			content:"Fail";
+			display:block;
+			font-size:20px;
+			font-weight:bold;
+			text-align: center;
+		}
+		.testunit.__pass {
+			background-color:green;
+		}
+		.testunit.__pass:after {
+			content:"Pass";
+		}
+	</style>
+	<body>
+
+		<div class="testunit" id="Unit1">
+			<div class="_title">Select by id</div>
+		</div>
+				
+		<div class="testunit unit2">
+			<div class="_title">Select by class</div>
+		</div>
+		
+		<div class="testunit unit3">
+			<div class="_title">Select multiple by class</div>
+		</div>
+
+		<div class="testunit unit3">
+			<div class="_title">Select multiple by class</div>
+		</div>
+				
+		<section class="testunit">
+			<div class="_title">Select by tag</div>
+		</section>
+						
+		<span id="Unit4">
+			<div class="testunit unit4">
+				<div class="_title">Select in selector</div>
+			</div>
+			<div class="testunit unit4">
+				<div class="_title">Select in selector</div>
+			</div>
+		</span>
+
+		<div class="testunit __pass" id="Unit5">
+			<div class="_title">Don't select outside</div>
+		</div>
+		<span class="unit6">
+			<div class="testunit unit6">
+				<div class="_title">Select with CSS selector</div>
+			</div>
+			<div class="testunit unit6 __pass">
+				<div class="_title">Select with CSS selector</div>
+			</div>
+		</span>
+
+		<script src="s.js"></script>
+		<script>
+			
+			s("#Unit1").addClass("__pass");
+			s(".unit2").addClass("__pass");
+			s(".unit3").toggleClass("__pass");
+			s("section").toggleClass("__pass");
+			s("#Unit4").find(".unit4").toggleClass("__pass");
+			s("#Unit5").find("#Unit5").toggleClass("__pass");
+			s(".unit6>.unit6:first-of-type").toggleClass("__pass");
+			
+			
+			
+		</script>
+	</body>
+</html>
