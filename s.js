@@ -112,7 +112,7 @@
 	}
 
 	select.stopListening = function (el, eventName, handler) {
-		if (el.removeventListener) {
+		if (el.removeEventListener) {
 			el.removeEventListener(eventName, handler, false);
 		} else if (el.detachEvent && htmlEvents['on' + eventName]) { // IE < 9
 			el.detachEvent('on' + eventName, handler);
