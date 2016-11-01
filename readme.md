@@ -6,43 +6,29 @@ Uses very jQuery-like syntax. Methods generally return the parent object so that
 
 ## Usage
 
+### Constructor
+
 ### `s(identifier)`
 
 Returns a Selector, an array-like collection of matching objects.
 
 *`identifier`* - String or HTMLElement. 
-- If it's a String
-	- and it starts with a '.', it will look for elements with that class. `s(".circular")`.
-	- and it starts with a '#', it will look for elements with that id. `s("#page-id")`.
-	- otherwise will look for elements of that type. `s("h1")`
 - If it's an HTMLElement
 	- returns a selector containing just that one item. 
+- If it's a String
+	- returns a selector object containing all items matching the css selector. Can accept any valid css selector, but is optimised for single classes, ids or tag names.
+	
+### Properties
 
 ### `selector.length`
 
 Contains the number of elements in the selector when created. Does not update with the DOM. Is read and write, so can be overwritten.
 
+### Methods
+
 ### `selector.addClass(className)`
 
 Adds a class to all the elements in the selector. Returns the selector.
-
-*`className`* - String. The class name. Note: No dot in front of it. 
-
-### `selector.removeClass(className)`
-
-Removes the class from all the elements in the selector. Returns the selector.
-
-*`className`* - String. The class name. Note: No dot in front of it.
-
-### `selector.toggleClass(className)`
-
-Removes the class from all the elements in the selector that have it, and adds the class to all elements that don't. Returns the selector.
-
-*`className`* - String. The class name. Note: No dot in front of it. 
-
-### `selector.hasClass(className)`
-
-Checks if the given first element of the selector has the specified class. Returns `true` or `false`.
 
 *`className`* - String. The class name. Note: No dot in front of it. 
 
@@ -68,8 +54,49 @@ Gets or sets the value of an HTML data-attribute. Returns the data-attribute val
 
 ### `selector.find(identifier)`
 
-Search within the first element of the selector to find items matching `identifier`. Returns a new selector.
+Searches within the all elements of the selector to find items matching `identifier`. Returns a new selector.
 
 *`identifier`* - String or HTMLElement. Uses the same rules as the s constructor.
 
+### `selector.hasClass(className)`
+
+Checks if the given first element of the selector has the specified class. Returns `true` or `false`.
+
+*`className`* - String. The class name. Note: No dot in front of it. 
+
+### `selector.removeClass(className)`
+
+Removes the class from all the elements in the selector. Returns the selector.
+
+*`className`* - String. The class name. Note: No dot in front of it.
+
+### `selector.toggleClass(className)`
+
+Removes the class from all the elements in the selector that have it, and adds the class to all elements that don't. Returns the selector.
+
+*`className`* - String. The class name. Note: No dot in front of it. 
+
+### Event handling
+
+Utility functions for triggering events and adding and removing event listeners.
+
+### `selector.on(eventName, handler)`
+
+Add an event listener to each item in the selector collection.
+
+*`eventName`* - String matching the event type.
+*`handler`* - Function that will be called when the event is heard.
+
+### `selector.off(eventName, handler)`
+
+Remove the specified event listener from each item in the selector collection.
+
+*`eventName`* - String matching the event type.
+*`handler`* - Function that will be called when the event is heard.
+
+### `selector.trigger(eventName)`
+
+Dispatch a new event of the type specified from each item in the selector collection.
+
+*`eventName`* - String matching the event type.
 

@@ -1,4 +1,8 @@
+/*
 
+version 0.5
+
+*/
 (function() {
 
 	function select(id, parent) {
@@ -101,7 +105,7 @@
 		}
 	}
 	
-	select.listen = function (el, eventName, handler) {
+	select.on = function (el, eventName, handler) {
 		if (el.addEventListener) {
 			el.addEventListener(eventName, handler, false);
 		} else if (el.attachEvent && htmlEvents['on' + eventName]) { // IE < 9
@@ -111,7 +115,7 @@
 		}
 	}
 
-	select.stopListening = function (el, eventName, handler) {
+	select.off = function (el, eventName, handler) {
 		if (el.removeEventListener) {
 			el.removeEventListener(eventName, handler, false);
 		} else if (el.detachEvent && htmlEvents['on' + eventName]) { // IE < 9
@@ -121,14 +125,18 @@
 		}
 	}
 	
-	select.dispatch = function(el, eventName) {
+	select.trigger = function(el, eventName) {
 		var event;
-		if (document.createEvent) {
-			event = document.createEvent('HTMLEvents');
-			event.initEvent(eventName, true, true);
-		} else if (document.createEventObject) { // IE < 9
-			event = document.createEventObject();
-			event.eventType = eventName;
+		try {
+			event = new Event(eventName, {bubbles:true, cancelable:true});
+		} catch (e) {
+			if (document.createEvent) {
+				event = document.createEvent('HTMLEvents');
+				event.initEvent(eventName, true, true);		
+			} else if (document.createEventObject) { // IE < 9
+				event = document.createEventObject();
+				event.eventType = eventName;
+			}
 		}
 		event.eventName = eventName;
 		if (el.dispatchEvent) {
@@ -216,21 +224,21 @@
 			return new Selector(els);
 		}
 		
-		this.listen = function(eventName, handler) {
+		this.on = function(eventName, handler) {
 			for (var i = me.length - 1; i > -1; i--) {
 				select.listen(me[i], eventName, handler);
 			}
 			return me;
 		}
 		
-		this.stopListening = function(eventName, handler) {
+		this.off = function(eventName, handler) {
 			for (var i = me.length - 1; i > -1; i--) {
 				select.stopListening(me[i], eventName, handler);
 			}
 			return me;
 		}
 				
-		this.dispatch = function(eventName) {
+		this.trigger = function(eventName) {
 			for (var i = me.length - 1; i > -1; i--) {
 				select.dispatch(me[i], eventName);
 			}
