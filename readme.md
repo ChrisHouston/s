@@ -85,6 +85,7 @@ Utility functions for triggering events and adding and removing event listeners.
 Add an event listener to each item in the selector collection.
 
 *`eventName`* - String matching the event type.
+
 *`handler`* - Function that will be called when the event is heard.
 
 ### `selector.off(eventName, handler)`
@@ -92,6 +93,7 @@ Add an event listener to each item in the selector collection.
 Remove the specified event listener from each item in the selector collection.
 
 *`eventName`* - String matching the event type.
+
 *`handler`* - Function that will be called when the event is heard.
 
 ### `selector.trigger(eventName)`
